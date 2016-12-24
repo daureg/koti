@@ -1,0 +1,103 @@
+main {
+  margin: 0 3%;
+}
+body {
+  font-family: serif;
+  color: #222;
+  background-color: #fcfefc;
+  max-width: 90%;
+  width: 80em;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+p {
+  margin-top: 1rem;
+}
+figure {
+margin: 0!important;
+}
+
+ul {
+  list-style:none;
+}
+#toc a.normal-text {
+  text-decoration: none;
+  color: inherit;
+}
+.bibtitle {
+  font-weight: bold;
+}
+
+.paperThumbnail {
+  display: inline-block;
+  width: 175px;
+  height: 225px;
+  margin-right: .8rem;
+  /* margin-right: .8rem; */
+  float: left;
+  clear: left;
+  -webkit-background-size: contain !important;
+  -moz-background-size: contain !important;
+  -o-background-size: contain !important;
+  background-size: contain !important;
+}
+
+#GeotopicsJournal16thumb .paperThumbnail:hover { background: url(GeotopicsJournal16_first.jpg) no-repeat; }
+#GeotopicsJournal16thumb .paperThumbnail { background: url(GeotopicsJournal16_fig.jpg) no-repeat; }
+#trollNips16thumb .paperThumbnail:hover { background: url(trollNips16_first.jpg) no-repeat; }
+#trollNips16thumb .paperThumbnail { background: url(trollNips16_fig.jpg) no-repeat; }
+#demoWWW16thumb .paperThumbnail:hover { background: url(demoWWW16_first.jpg) no-repeat; }
+#demoWWW16thumb .paperThumbnail { background: url(demoWWW16_fig.jpg) no-repeat; }
+#thesis14thumb .paperThumbnail:hover { background: url(thesis14_first.jpg) no-repeat; }
+#thesis14thumb .paperThumbnail { background: url(thesis14_fig.jpg) no-repeat; }
+#LFGM15thumb .paperThumbnail:hover { background: url(LFGM15_first.jpg) no-repeat; }
+#LFGM15thumb .paperThumbnail { background: url(LFGM15_fig.jpg) no-repeat; }
+
+.card {
+  transition: box-shadow .25s;
+  padding: 0.9rem;
+  margin: 1rem;
+  margin-bottom: 5.4rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  border: rgba(200, 200, 200, .9) thin solid;
+}
+.abstract-box {
+  background-color: #fef5ea;
+}
+.info {
+  text-align: center;
+}
+.info h3, .info h3 a {
+  color: DodgerBlue;
+  text-decoration: none;
+  margin: 1ex auto;
+  font-weight: normal;
+  font-size: x-large;
+  text-shadow: rgba(255, 255, 255, 0.746094) 0 1px 0;
+}
+.gallery img {
+  width: 100%;
+}
+.gallery .lead {
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 12px;
+  }
+  .info h3, .info h3 a {
+    font-size: 18px;
+  }
+  .paperThumbnail {
+    width: 87px;
+    height: 112px;
+  }
+.card {
+  margin-bottom: 1rem;
+}
+.gallery {
+  margin-bottom: 3rem;
+}
+}
