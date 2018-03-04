@@ -73,7 +73,7 @@ ul {
 }
 .info h3, .info h3 a {
   color: DodgerBlue;
-  text-decoration: none;
+  /* text-decoration: none; */
   margin: 1ex auto;
   font-weight: normal;
   font-size: x-large;
