@@ -53,6 +53,8 @@ ul {
 #thesis14thumb .paperThumbnail { background: url(thesis14_fig.jpg) no-repeat; }
 #LFGM15thumb .paperThumbnail:hover { background: url(LFGM15_first.jpg) no-repeat; }
 #LFGM15thumb .paperThumbnail { background: url(LFGM15_fig.jpg) no-repeat; }
+#thesis18thumb .paperThumbnail:hover { background: url(thesis18_first.jpg) no-repeat; }
+#thesis18thumb .paperThumbnail { background: url(thesis18_fig.jpg) no-repeat; }
 
 .card {
   transition: box-shadow .25s;
