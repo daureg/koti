@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Screen Leaflet Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100vw;
+        }
+        table {
+border-collapse: collapse;
+margin: 0;
+font-size: 10pt;
+border: thin solid #eee;
+        }
+table th, table td {
+    padding: 5px 10px;
+}
+tr:nth-child(even) {background: #f7f7f7;}
+.leaflet-popup-content img {
+   display: block;
+   margin: 0.5rem auto;
+}
+
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+      var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      });
+      var Jawg_Sunny = L.tileLayer('https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+              attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+              minZoom: 0,
+              maxZoom: 22,
+              subdomains: 'abcd',
+              accessToken: window.atob('ZjVReVNaTThjam5GZVdIRjlhOXdJZGcwQVU1MDBjajBm')+window.atob('VXE2R0VjaGppNExTZExuSkQybkphRDV2Y0p5MnhtYQ==')
+      });
+      var map = L.map('map', {})
+      //OpenStreetMap_Mapnik.addTo(map);
+      Jawg_Sunny.addTo(map);
+      const props = ["name", "start", "moving_time", "elapsed_time", "distance", "moving_speed", "overall_speed",
+        "moving_share", "fastest_full_km", "slowest_full_km"
+      ];
+
+      function title(str) {
+        return str.replaceAll('_', ' ').split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(
+          ' ');
+      }
+
+      function addRides(data) {
+        var geo = L.geoJSON(data, {
+          style: function(feat) {
+            return {
+              color: feat.properties["stroke"],
+              weight: feat.properties["stroke-width"],
+              opacity: feat.properties["stroke-opacity"],
+            }
+          },
+          onEachFeature: function(feat, layer) {
+            var rows = "";
+            const num = feat.properties["order"]
+            for (var prop of props) {
+              rows += `<tr><th>${title(prop)}</th><td>${feat.properties[prop]}</td></tr>`;
+            }
+            const content = `<table>${rows}</table><img src="day${num}.webp" width="300px"></img>`
+            const h = Math.ceil(0.9 * document.getElementById("map").offsetHeight);
+            layer.bindPopup(content, {
+              maxHeight: h
+            });
+          }
+        });
+        map.fitBounds(geo.getBounds());
+        geo.addTo(map);
+      }
+      fetch('rides.geojson').then(response => response.json()).then(data => addRides(data));
+    </script>
+</body>
+</html>
